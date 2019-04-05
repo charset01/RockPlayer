@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+{% extends 'RockPlayer/base.html' %}
+{% block title %}RockPlayer{% endblock %}
+{% block content %}
+<body style="background-color:#001a33">
+<div class="container-fluid">
+    <div class="row">
+        {% if albums %}
+        {% for album in albums %}
+            <div class="col-sm-3">
+                <div class="thumbnail">
+                    <a href="{% url 'RockPlayer:detail' album.id %}">
+                    <img src="{{ album.album_cover.url }}" class="img img-responsive img-circle" alt="" style="height:250px; width:250px;">
+                    </a>
+                    <div class="caption">
+                        <i class="fas fa-compact-disc"></i>&nbsp;<p>{{ album.name }}</p>
+                        <i class="fas fa-user-alt"></i>&nbsp;<p>{{ album.artist }}</p>
+                        <a href="{% url 'RockPlayer:update-album' album.id %}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
+                        <a href="{% url 'RockPlayer:delete-album' album.id %}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+                        <a href="" class="btn btn-success btn-sm" style="float: right;"><i class="fas fa-heart"></i></a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+</body>

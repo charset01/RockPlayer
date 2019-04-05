@@ -1,0 +1,27 @@
+{% extends 'RockPlayer/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}New Song{%endblock %}
+{% block content %}
+<body  style="background-color:#001a33">
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3 class="text-success text-capitalize">new song</h3>
+                    <hr>
+                    <form method="POST" enctype="multipart/form-data">
+                        {% if message %}<div class="alert alert-warning"><h4>{{ message }}</h4></div>{% endif %}
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+</body>

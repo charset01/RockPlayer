@@ -1,0 +1,26 @@
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+{% extends 'RockPlayer/base.html' %}
+{%block title%}{% if object %}Update Album{% else %}Add album{% endif %}{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+<body style="background-color:#001a33">
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-info panel-body">
+                <h3 class="text-primary">{% if object %}Update Album{% else %}Add album{% endif %}</h3>
+                <hr>
+                <form method="POST" enctype="multipart/form-data">
+                    {% if message %}<div class="alert alert-danger"><h4 class="text-primary">{{ message }}</h4></div>{% endif %}
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button type="submit" class="btn btn-info">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+</body>
